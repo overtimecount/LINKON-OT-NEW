@@ -22,12 +22,15 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      - name: Create Gradle Wrapper
+        run: gradle wrapper --gradle-version 8.9
+
       - name: Build APK
-        run: gradle assembleDebug --stacktrace --console=plain
+        run: ./gradlew assembleDebug --stacktrace --console=plain
 
       - name: Upload APK
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: LINKON-OT-debug-apk-v1.1
+          name: LINKON-OT-debug-apk-v2
           path: app/build/outputs/apk/debug/app-debug.apk
